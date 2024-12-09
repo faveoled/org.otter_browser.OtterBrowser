@@ -1,0 +1,38 @@
+app-id: org.otter_browser.OtterBrowser
+
+base: io.qt.qtwebengine.BaseApp
+base-version: '5.15-24.08'
+
+runtime: org.kde.Platform
+runtime-version: '5.15-24.08'
+sdk: org.kde.Sdk
+
+command: otter-browser
+rename-desktop-file: otter-browser.desktop
+rename-appdata-file: otter-browser.appdata.xml
+rename-icon: otter-browser
+
+finish-args:
+  # X11 + XShm
+  - --socket=x11
+  - --share=ipc
+  # Acceleration
+  - --device=dri
+  # Network access
+  - --share=network
+  # Sound
+  - --socket=pulseaudio
+  # Downloading files
+  - --filesystem=xdg-download
+  # Suppress unusable sandbox warnings
+  #- --env=QTWEBENGINE_DISABLE_SANDBOX=1
+
+modules:
+  - name: otter-browser
+    buildsystem: cmake-ninja
+    post-install:
+      - install -Dm644 -t /app/share/metainfo packaging/otter-browser.appdata.xml
+    sources:
+      - type: archive
+        url: https://github.com/OtterBrowser/otter-browser/archive/v1.0.03.tar.gz
+        sha256: 2b07d22a5d921ec0b3d29a680eb913c3fe0713ca7d10e37873a3802d1a5154a3
