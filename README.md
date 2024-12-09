@@ -2,7 +2,7 @@
 1. Download `app.flatpak` from Releases
 2. 
 ```
-flatpak install ./app.flatpak
+flatpak install app.flatpak
 ```
 ### Build Flatpak from source:
 ```
