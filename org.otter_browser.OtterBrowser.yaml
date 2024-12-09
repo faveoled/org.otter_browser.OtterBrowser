@@ -24,6 +24,7 @@ finish-args:
   - --socket=pulseaudio
   # Downloading files
   - --filesystem=xdg-download
+  - --filesystem=/tmp
   # Suppress unusable sandbox warnings
   #- --env=QTWEBENGINE_DISABLE_SANDBOX=1
 
